@@ -1,15 +1,17 @@
 import { COLORS, FONT_SIZE } from "../../constants/theme"
 
 export const styles = {
-    btn: {
+    header: {
         width: "100%",
-        backgroundColor: COLORS.red,
-        borderRadius: 6
+        alignItems: "center"
     },
-    texto: {
+    logo: {
+        width: 170,
+        height: 50
+    },
+    titulo: {
+        color: COLORS.dark_gray,
         fontSize: FONT_SIZE.md,
-        color: "white",
-        padding: 14,
         textAlign: "center"
     }
 }
