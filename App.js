@@ -1,7 +1,9 @@
-import Registro2 from "./src/screens/registro2/registro2.jsx"
+import Login from "./src/screens/login/login.jsx";
 
 export default function App() {
-  return (
-   <Registro2 />
+
+  return (<>
+    <Login />
+  </>
   );
 }

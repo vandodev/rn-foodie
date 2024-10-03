@@ -3,7 +3,7 @@ import { styles } from "./button.style.js";
 
 
 function Button(props) {
-    return <TouchableOpacity style={styles.btn}>
+    return <TouchableOpacity style={styles.btn} onPress={props.onPress}>
         <Text style={styles.texto}>{props.texto}</Text>
     </TouchableOpacity>
 }
