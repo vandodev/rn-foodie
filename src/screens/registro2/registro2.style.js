@@ -3,13 +3,22 @@ import { COLORS, FONT_SIZE } from "../../constants/theme"
 export const styles = {
     container: {
         flex: 1,
-        padding: 40,
+        paddingLeft: 40,
+        paddingRight: 40,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: COLORS.white
     },
     form: {
         width: "100%",
         marginBottom: 15
+    },
+    formHorizontal: {
+        flexDirection: "row"
+    },
+    scrollView: {
+        width: "100%",
+        marginTop:50
     },
     formGroup: {
         width: "100%",
@@ -18,19 +27,24 @@ export const styles = {
     },
     footer: {
         width: "100%",
-        height:70,
-        background:COLORS.white,
+        backgroundColor: COLORS.white,
         position: "absolute",
         bottom: 0,
-        marginBottom: 25,
-        padding:20
+        padding: 20,
+        height: 70
     },
     footerText: {
         textAlign: "center",
         color: COLORS.dark_gray,
         fontSize: FONT_SIZE.md
     },
-    ScrollView: {
-        width: "100%",
+    form70: {
+        width: "70%",
+        marginBottom: 15,
+        paddingRight: 10
+    },
+    form30: {
+        width: "30%",
+        marginBottom: 15
     }
 }
