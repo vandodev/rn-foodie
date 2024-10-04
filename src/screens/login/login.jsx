@@ -5,7 +5,7 @@ import TextBox from "../../components/textbox/textbox.jsx";
 import Button from "../../components/button/button.jsx";
 import { useState } from "react";
 
-function Login() {
+function Login(props) {
 
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
@@ -36,7 +36,7 @@ function Login() {
         </View>
 
         <View style={styles.footer}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => props.navigation.navigate("registro")}>
                 <Text style={styles.footerText}>Criar minha conta.</Text>
             </TouchableOpacity>
         </View>

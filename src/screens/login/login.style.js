@@ -1,3 +1,4 @@
+import { BackHandler } from "react-native"
 import { COLORS, FONT_SIZE } from "../../constants/theme"
 
 export const styles = {
@@ -5,7 +6,8 @@ export const styles = {
         flex: 1,
         padding: 40,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: COLORS.white
     },
     form: {
         width: "100%",
