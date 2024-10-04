@@ -4,6 +4,8 @@ import icons from "../../constants/icons.js";
 import { SafeAreaView } from "react-native-safe-area-context";
 import TextBox from "../../components/textbox/textbox.jsx";
 import { useState } from "react";
+import Categorias from "../../components/categorias/categorias.jsx";
+import { categorias} from "../../constants/dados.js";
 
 function Home() {
 
@@ -20,6 +22,12 @@ function Home() {
                 onChangeText={(texto) => setBusca(texto)}
                 value={busca} />
         </View>
+
+        <ScrollView showsVerticalScrollIndicator={false}>
+
+            <Categorias dados={categorias} /> 
+
+        </ScrollView>
 
     </SafeAreaView>
 }
