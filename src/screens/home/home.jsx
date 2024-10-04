@@ -5,7 +5,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import TextBox from "../../components/textbox/textbox.jsx";
 import { useState } from "react";
 import Categorias from "../../components/categorias/categorias.jsx";
-import { categorias} from "../../constants/dados.js";
+import { categorias, banners} from "../../constants/dados.js";
+import Banners from "../../components/banners/banners.jsx";
 
 function Home() {
 
@@ -25,7 +26,9 @@ function Home() {
 
         <ScrollView showsVerticalScrollIndicator={false}>
 
-            <Categorias dados={categorias} /> 
+            <Categorias dados={categorias} />
+
+            <Banners dados={banners} />          
 
         </ScrollView>
 
