@@ -36,7 +36,8 @@ function Home() {
                     return <View key={index}>
                         <Restaurante logotipo={restaurante.logotipo}
                             nome={restaurante.nome}
-                            endereco={restaurante.endereco} />
+                            endereco={restaurante.endereco} 
+                            icone={icons.favoritoFull}/>
                     </View>
                 })
             }
