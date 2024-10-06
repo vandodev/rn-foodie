@@ -2,6 +2,7 @@ import Login from "./screens/login/login.jsx";
 import Registro from "./screens/registro/registro.jsx";
 import Registro2 from "./screens/registro2/registro2.jsx";
 import Home from "./screens/home/home.jsx";
+import Pedidos from "./screens/pedidos/pedidos.jsx";
 import Favoritos from "./screens/favoritos/favoritos.jsx";
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -12,6 +13,13 @@ const Stack = createNativeStackNavigator();
 function Routes() {
     return <NavigationContainer>
         <Stack.Navigator>
+
+          <Stack.Screen name="pedidos" component={Pedidos} options={{
+                // headerShown: false
+                title:"Meus pedidos",
+                headerTitleAlign:"center",
+                headerShadowVisible:"false"
+            }} />
 
             <Stack.Screen name="favoritos" component={Favoritos} options={{
                 // headerShown: false
