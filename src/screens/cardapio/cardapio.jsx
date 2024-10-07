@@ -2,6 +2,7 @@ import { Image, TouchableOpacity, View, Text, ScrollView } from "react-native";
 import { styles } from "./cardapio.style.js";
 import { restaurante } from "../../constants/dados.js";
 import icons from "../../constants/icons.js";
+import Produto from "../../components/produto/produto.jsx";
 
 function Cardapio(props) {
     return <View style={styles.container}>
@@ -27,7 +28,28 @@ function Cardapio(props) {
             <View style={styles.location}>
                 <Image source={icons.location} style={styles.locationImg} />
                 <Text style={styles.endereco}>Avenida Brigadeiro Luis Antonio, 1250 - CJ 1651</Text>
-            </View>           
+            </View>
+
+            {
+                restaurante.cardapio.map((item) => {
+                    return <View key={item.idCategoria} style={styles.containerProduto}>
+                        <Text style={styles.categoria}>{item.categoria}</Text>
+
+                        {
+                            item.itens.map((prod) => {
+                                return <Produto key={prod.idProduto}
+                                    idProduto={prod.idProduto}
+                                    foto={prod.foto}
+                                    nome={prod.nome}
+                                    descricao={prod.descricao}
+                                    valor={prod.valor}
+                                />
+                            })
+                        }
+
+                    </View>
+                })
+            }
 
         </ScrollView>
 
