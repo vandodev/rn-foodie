@@ -7,12 +7,17 @@ import Home from "./screens/home/home.jsx";
 import Favoritos from "./screens/favoritos/favoritos.jsx";
 import Pedidos from "./screens/pedidos/pedidos.jsx";
 import Perfil from "./screens/perfil/perfil.jsx";
+import Cardapio from "./screens/cardapio/cardapio.jsx"
 
 const Tab = createBottomTabNavigator();
 
 function RoutesAuth() {
     return <NavigationContainer>
         <Tab.Navigator screenOptions={{ tabBarShowLabel: false }}>
+
+            <Tab.Screen name="Cardapio" component={Cardapio} options={{
+                headerShown: false,                
+            }} />
 
             <Tab.Screen name="home" component={Home} options={{
                 headerShown: false,
