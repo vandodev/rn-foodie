@@ -1,8 +1,8 @@
-import { View, Image, Text } from "react-native";
+import { View, Image, Text, TouchableOpacity } from "react-native";
 import { styles } from "./pedido.style.js";
 
 function Pedido(props) {
-    return <View style={styles.pedido}>
+    return <TouchableOpacity style={styles.pedido} onPress={() => props.onClickPedido()}>
         <Image source={props.logotipo} style={styles.logotipo} />
 
         <View style={styles.textos}>
@@ -19,7 +19,7 @@ function Pedido(props) {
             <Text style={styles.status}>{props.status}</Text>
         </View>
 
-    </View>
+    </TouchableOpacity>
 }
 
 export default Pedido;

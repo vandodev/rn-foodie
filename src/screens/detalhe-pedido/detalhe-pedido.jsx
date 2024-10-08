@@ -1,19 +1,11 @@
-import { Image, TouchableOpacity, View, Text, FlatList } from "react-native";
+import { View, Text, FlatList } from "react-native";
 import { styles } from "./pedido-detalhe.style.js";
-import icons from "../../constants/icons.js";
 import { pedido } from "../../constants/dados.js";
 import Produto from "../../components/produto/produto.jsx";
 
 
-function DetalhePedido() {
+function DetalhePedido(props) {
     return <View style={styles.container}>
-
-        <View style={styles.header}>
-            <TouchableOpacity style={styles.containerBack}>
-                <Image source={icons.back} style={styles.back} />
-            </TouchableOpacity>
-            <Text style={styles.titulo}>Detalhes do Pedido</Text>
-        </View>
 
         <FlatList data={pedido.itens}
             keyExtractor={(item) => item.idItem}
