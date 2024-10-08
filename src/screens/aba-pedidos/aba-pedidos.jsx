@@ -1,11 +1,11 @@
 import { FlatList, Image, Text, View } from "react-native";
 import { pedidos } from "../../constants/dados.js";
 import icons from "../../constants/icons.js";
-import { styles } from "./pedidos.style.js";
+import { styles } from "./aba-pedidos.style.js";
 import Pedido from "../../components/pedido/pedido.jsx";
 
 
-function Pedidos() {
+function AbaPedidos() {
     return <View style={styles.container}>
         <FlatList data={pedidos}
             keyExtractor={(ped) => ped.id}
@@ -30,4 +30,4 @@ function Pedidos() {
     </View>
 }
 
-export default Pedidos;
+export default AbaPedidos;

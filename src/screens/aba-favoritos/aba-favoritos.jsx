@@ -1,15 +1,12 @@
 import { FlatList, Image, Text, View } from "react-native";
 import { restaurantes } from "../../constants/dados.js";
-import Restaurante from "../../components/restaurante/restaurante";
+import Restaurante from "../../components/restaurante/restaurante.jsx";
 import icons from "../../constants/icons.js";
-import { styles } from "./favoritos.style.js";
+import { styles } from "./aba-favoritos.style.js";
 
-const vazio = []
-
-function Favoritos() {    
+function AbaFavoritos() {
     return <View style={styles.container}>
-        {/* <FlatList data={vazio} */}
-        <FlatList data={restaurantes} 
+        <FlatList data={restaurantes}
             keyExtractor={(restaurante) => restaurante.id}
             showsVerticalScrollIndicator={false}
             renderItem={({ item }) => {
@@ -31,4 +28,4 @@ function Favoritos() {
     </View>
 }
 
-export default Favoritos;
+export default AbaFavoritos;
