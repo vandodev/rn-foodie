@@ -14,9 +14,12 @@ import abafavorito from "../assets/aba-favorito.png";
 import abaPedido from "../assets/aba-pedidos.png";
 import abaPerfil from "../assets/aba-perfil.png";
 import location from "../assets/location.png"
+import produto from "../assets/produto-pizza.png";
+import menos from "../assets/menos.png";
+import mais from "../assets/mais.png";
 
 export default {
     back, remove, logo, cart, favoritoFull, empty,
     endereco, more, dados, logout, abaHome, abafavorito, abaPedido, abaPerfil,
-    back2, location
+    back2, location, produto, menos, mais
 };
