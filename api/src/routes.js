@@ -1,5 +1,6 @@
 import { Router } from "express";
 import controllerCategoria from "./controllers/controller.categoria.js";
+import controllerBanner from "./controllers/controller.banner.js"
 
 const router = Router();
 
@@ -53,5 +54,6 @@ router.get("/restaurantes", (req, res) => {
 });
 
 router.get("/categorias", controllerCategoria.Listar);
+router.get("/banner", controllerBanner.Listar);
 
 export default router;
