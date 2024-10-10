@@ -1,13 +1,10 @@
 import { Router } from "express";
+import controllerCategoria from "./controllers/controller.categoria.js";
 
 const router = Router();
 
-//GET: http://localhost:3001/usuarios/login?email=teste@teste.com&senha=123
-
 router.post("/usuarios/login", (req, res) => {
 
-    //const email = req.body.email;
-    //const senha = req.body.senha;
     const { email, senha } = req.body;
 
     if (email == "teste@teste.com" && senha == "12345") {
@@ -22,11 +19,6 @@ router.post("/usuarios/login", (req, res) => {
     }
 
 });
-
-// GET = Listar dados
-// POST = Inserir os dados no servidor
-// PUT = Editar dados no servidor
-// DELETE = Excluir dados no servidor
 
 router.post("/usuarios", (req, res) => {
 
@@ -53,8 +45,6 @@ router.get("/restaurantes", (req, res) => {
     // Query params: http://localhost:3001/restaurantes?busca=Pizza (somente GET)
     const busca = req.query.busca;
 
-    // res.json({message: "nenhum restaurante encontrado" + busca})
-
     res.json([
         { restaurante: 1, nome: "Burger King" },
         { restaurante: 2, nome: "Mc Donalds" }
@@ -62,16 +52,6 @@ router.get("/restaurantes", (req, res) => {
 
 });
 
-router.get("/categorias", (req, res) => {
-
-    // Query params: http://localhost:3001/categorias
-
-    res.json([
-        { id_categoria: 1, categoria: "Burguers" },
-        { id_categoria: 2, categoria: "Pizzas" },
-        { id_categoria: 3, categoria: "Fritas" }
-    ]);
-
-});
+router.get("/categorias", controllerCategoria.Listar);
 
 export default router;
