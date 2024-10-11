@@ -11,5 +11,42 @@ async function Favoritos(req, res) {
     }
 }
 
+async function Login(req, res) {
 
-export default { Favoritos };
+    //const email = req.body.email;
+    //const senha = req.body.senha;
+    const { email, senha } = req.body;
+
+    if (email == "teste@teste.com" && senha == "12345") {
+        res.status(200).json({
+            id_usuario: 123,
+            email: "teste@teste.com",
+            nome: "Evandro Oliveira",
+            insta: "@evandro.com.br"
+        });
+    } else {
+        res.status(401).json({ error: "E-mail ou senha inválida" });
+    }
+
+}
+
+async function Inserir(req, res) {
+
+    const { nome, email, senha, endereco, complemento, bairro, cidade, uf, cep } = req.body;
+
+    res.status(201).json({
+        id_usuario: 123,
+        nome,
+        email,
+        senha,
+        endereco,
+        complemento,
+        bairro,
+        cidade,
+        uf,
+        cep,
+        insta: "@devpoint.com.br"
+    });
+}
+
+export default { Favoritos, Login, Inserir };

@@ -19,5 +19,7 @@ router.get("/pedidos/:id_pedido", controllerPedido.ListarId);
 
 // Usuarios 
 router.get("/usuarios/favoritos", controllerUsuario.Favoritos);
+router.post("/usuarios/login", controllerUsuario.Login);
+router.post("/usuarios", controllerUsuario.Inserir);
 
 export default router;
