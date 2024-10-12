@@ -1,4 +1,6 @@
 import serviceUsuario from "../services/service.usuario.js";
+import token from "../token.js";
+import jwt from "../token.js";
 
 async function Favoritos(req, res) {
     try {
@@ -22,7 +24,8 @@ async function Login(req, res) {
             id_usuario: 123,
             email: "teste@teste.com",
             nome: "Evandro Oliveira",
-            insta: "@evandro.com.br"
+            insta: "@evandro.com.br",
+            token: jwt.CreateJWT(123)
         });
     } else {
         res.status(401).json({ error: "E-mail ou senha inválida" });
