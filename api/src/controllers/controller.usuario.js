@@ -1,5 +1,4 @@
 import serviceUsuario from "../services/service.usuario.js";
-import token from "../token.js";
 import jwt from "../token.js";
 
 async function Favoritos(req, res) {
@@ -35,21 +34,18 @@ async function Login(req, res) {
 
 async function Inserir(req, res) {
 
-    const { nome, email, senha, endereco, complemento, bairro, cidade, uf, cep } = req.body;
+    try {
+        const { nome, email, senha, endereco, complemento, bairro, cidade, uf, cep } = req.body;
 
-    res.status(201).json({
-        id_usuario: 123,
-        nome,
-        email,
-        senha,
-        endereco,
-        complemento,
-        bairro,
-        cidade,
-        uf,
-        cep,
-        insta: "@devpoint.com.br"
-    });
+        const usuario = await serviceUsuario.Inserir(nome, email, senha, endereco,
+            complemento, bairro, cidade, uf, cep);
+
+        usuario.token = jwt.CreateJWT(usuario.id_usuario);
+
+        res.status(201).json(usuario);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
 }
 
 export default { Favoritos, Login, Inserir };
