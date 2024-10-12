@@ -1,9 +1,8 @@
 import serviceUsuario from "../services/service.usuario.js";
-import jwt from "../token.js";
 
 async function Favoritos(req, res) {
     try {
-        const id_usuario = 1; // Pegar do token JWT
+        const id_usuario = req.id_usuario;
         const favoritos = await serviceUsuario.Favoritos(id_usuario);
 
         res.status(200).json(favoritos);
@@ -14,22 +13,14 @@ async function Favoritos(req, res) {
 
 async function Login(req, res) {
 
-    //const email = req.body.email;
-    //const senha = req.body.senha;
     const { email, senha } = req.body;
 
-    if (email == "teste@teste.com" && senha == "12345") {
-        res.status(200).json({
-            id_usuario: 123,
-            email: "teste@teste.com",
-            nome: "Evandro Oliveira",
-            insta: "@evandro.com.br",
-            token: jwt.CreateJWT(123)
-        });
-    } else {
-        res.status(401).json({ error: "E-mail ou senha inválida" });
-    }
+    const usuario = await serviceUsuario.Login(email, senha);
 
+    if (usuario.length == 0)
+        res.status(401).json({ error: "E-mail ou senha inválida" });
+    else
+        res.status(200).json(usuario);
 }
 
 async function Inserir(req, res) {
@@ -39,8 +30,6 @@ async function Inserir(req, res) {
 
         const usuario = await serviceUsuario.Inserir(nome, email, senha, endereco,
             complemento, bairro, cidade, uf, cep);
-
-        usuario.token = jwt.CreateJWT(usuario.id_usuario);
 
         res.status(201).json(usuario);
     } catch (error) {
