@@ -21,4 +21,11 @@ async function InserirFavorito(id_usuario, id_empresa) {
     return empresas;
 }
 
-export default { Destaques, Listar, InserirFavorito };
+async function ExcluirFavorito(id_usuario, id_empresa) {
+
+    const empresas = await repositoryEmpresa.ExcluirFavorito(id_usuario, id_empresa);
+
+    return empresas;
+}
+
+export default { Destaques, Listar, InserirFavorito, ExcluirFavorito };

@@ -45,4 +45,14 @@ async function InserirFavorito(id_usuario, id_empresa) {
     return fav[0];
 }
 
-export default { Destaques, Listar, InserirFavorito};
+async function ExcluirFavorito(id_usuario, id_empresa) {
+
+    const sql = `delete from usuario_favorito where id_empresa = ? and id_usuario = ? 
+    returning id_favorito`;
+
+    const fav = await execute(sql, [id_empresa, id_usuario]);
+
+    return fav[0];
+}
+
+export default { Destaques, Listar, InserirFavorito, ExcluirFavorito };

@@ -35,4 +35,16 @@ async function InserirFavorito(req, res) {
     }
 }
 
-export default { Destaques, Listar, InserirFavorito};
+async function ExcluirFavorito(req, res) {
+    try {
+        const id_usuario = req.id_usuario;
+        const id_empresa = req.params.id_empresa;
+        const empresas = await serviceEmpresa.ExcluirFavorito(id_usuario, id_empresa);
+
+        res.status(200).json(empresas);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+}
+
+export default { Destaques, Listar, InserirFavorito, ExcluirFavorito };
