@@ -23,4 +23,16 @@ async function Listar(req, res) {
     }
 }
 
-export default { Destaques, Listar};
+async function InserirFavorito(req, res) {
+    try {
+        const id_usuario = req.id_usuario;
+        const id_empresa = req.params.id_empresa;
+        const empresas = await serviceEmpresa.InserirFavorito(id_usuario, id_empresa);
+
+        res.status(201).json(empresas);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+}
+
+export default { Destaques, Listar, InserirFavorito};

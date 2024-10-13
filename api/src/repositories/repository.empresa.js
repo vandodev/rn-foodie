@@ -33,4 +33,16 @@ async function Listar(id_usuario, busca) {
     return empresas;
 }
 
-export default { Destaques, Listar};
+async function InserirFavorito(id_usuario, id_empresa) {
+
+    await ExcluirFavorito(id_usuario, id_empresa);
+
+    const sql = `insert into usuario_favorito(id_usuario, id_empresa) values(?, ?) 
+    returning id_favorito`;
+
+    const fav = await execute(sql, [id_usuario, id_empresa]);
+
+    return fav[0];
+}
+
+export default { Destaques, Listar, InserirFavorito};

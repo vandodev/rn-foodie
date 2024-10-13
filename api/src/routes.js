@@ -14,6 +14,7 @@ router.get("/banners", jwt.ValidateJWT, controllerBanner.Listar);
 // Empresas
 router.get("/empresas/destaques", jwt.ValidateJWT, controllerEmpresa.Destaques);
 router.get("/empresas/", jwt.ValidateJWT, controllerEmpresa.Listar);
+router.post("/empresas/:id_empresa/favoritos", jwt.ValidateJWT, controllerEmpresa.InserirFavorito);
 
 // Pedidos
 router.get("/pedidos", jwt.ValidateJWT, controllerPedido.Listar);

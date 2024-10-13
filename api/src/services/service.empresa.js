@@ -14,4 +14,11 @@ async function Listar(id_usuario, busca) {
     return empresas;
 }
 
-export default { Destaques, Listar };
+async function InserirFavorito(id_usuario, id_empresa) {
+
+    const empresas = await repositoryEmpresa.InserirFavorito(id_usuario, id_empresa);
+
+    return empresas;
+}
+
+export default { Destaques, Listar, InserirFavorito };
