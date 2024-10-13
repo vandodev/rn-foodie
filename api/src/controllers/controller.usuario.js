@@ -37,4 +37,15 @@ async function Inserir(req, res) {
     }
 }
 
-export default { Favoritos, Login, Inserir };
+async function Perfil(req, res) {
+    try {
+        const id_usuario = req.id_usuario;
+        const usuario = await serviceUsuario.Perfil(id_usuario);
+
+        res.status(200).json(usuario);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+}
+
+export default { Favoritos, Login, Inserir, Perfil };

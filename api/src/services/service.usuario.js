@@ -44,4 +44,11 @@ async function Login(email, senha) {
     }
 }
 
-export default { Favoritos, Inserir, Login };
+async function Perfil(id_usuario) {
+
+    const usuario = await repositoryUsuario.ListarById(id_usuario);
+
+    return usuario;
+}
+
+export default { Favoritos, Inserir, Login, Perfil };
