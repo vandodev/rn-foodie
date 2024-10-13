@@ -10,8 +10,10 @@ const router = Router();
 
 router.get("/categorias", jwt.ValidateJWT, controllerCategoria.Listar);
 router.get("/banners", jwt.ValidateJWT, controllerBanner.Listar);
-router.get("/empresas/destaques", jwt.ValidateJWT, controllerEmpresa.Destaques);
 
+// Empresas
+router.get("/empresas/destaques", jwt.ValidateJWT, controllerEmpresa.Destaques);
+router.get("/empresas/", jwt.ValidateJWT, controllerEmpresa.Listar);
 
 // Pedidos
 router.get("/pedidos", jwt.ValidateJWT, controllerPedido.Listar);

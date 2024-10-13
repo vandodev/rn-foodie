@@ -7,4 +7,11 @@ async function Destaques(id_usuario) {
     return empresas;
 }
 
-export default { Destaques};
+async function Listar(id_usuario, busca) {
+
+    const empresas = await repositoryEmpresa.Listar(id_usuario, busca);
+
+    return empresas;
+}
+
+export default { Destaques, Listar };
