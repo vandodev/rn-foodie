@@ -55,4 +55,32 @@ async function ExcluirFavorito(id_usuario, id_empresa) {
     return fav[0];
 }
 
-export default { Destaques, Listar, InserirFavorito, ExcluirFavorito };
+async function Cardapio(id_usuario, id_empresa) {
+
+    let sql = `select case when u.id_favorito is null then 'N' else 'S' end as favorito, e.*
+    from  empresa e
+    left join usuario_favorito u on (u.id_empresa = e.id_empresa and u.id_usuario = ?)
+    where e.id_empresa = ?`;
+
+    const empresa = await execute(sql, [id_usuario, id_empresa]);
+
+    //-----------------
+
+    sql = `select p.*, c.categoria
+    from produto p
+    join produto_categoria c on (c.id_empresa = p.id_empresa and c.id_categoria = p.id_categoria)
+    where p.id_empresa = ?
+    order by c.ordem, p.nome`;
+
+    const itens = await execute(sql, [id_empresa]);
+
+    //-----------------
+
+    let retorno = empresa[0];
+
+    retorno.itens = itens;
+
+    return retorno;
+}
+
+export default { Destaques, Listar, InserirFavorito, ExcluirFavorito, Cardapio };
