@@ -21,4 +21,16 @@ async function ListarId(req, res) {
     }
 }
 
-export default { Listar, ListarId };
+async function Inserir(req, res) {
+    try {
+        const id_usuario = req.id_usuario;
+
+        const pedido = await servicePedido.Inserir(id_usuario, req.body);
+
+        res.status(201).json(pedido);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+}
+
+export default { Listar, ListarId, Inserir };

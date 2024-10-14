@@ -23,6 +23,7 @@ router.get("/empresas/:id_empresa/produtos/:id_produto", jwt.ValidateJWT, contro
 // Pedidos
 router.get("/pedidos", jwt.ValidateJWT, controllerPedido.Listar);
 router.get("/pedidos/:id_pedido", jwt.ValidateJWT, controllerPedido.ListarId);
+router.post("/pedidos", jwt.ValidateJWT, controllerPedido.Inserir);
 
 
 // Usuarios
