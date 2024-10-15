@@ -10,6 +10,7 @@ function Login(props) {
 
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
+    const [loading, setLoading] = useState(false);
 
     async function ProcessarLogin() {
 
@@ -60,7 +61,7 @@ function Login(props) {
 
             <View style={styles.form}>
                 <Button texto="Acessar"
-                    onPress={ProcessarLogin} />
+                    onPress={ProcessarLogin} isLoading={loading} />
             </View>
         </View>
 
