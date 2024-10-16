@@ -5,6 +5,7 @@ import TextBox from "../../components/textbox/textbox.jsx";
 import Button from "../../components/button/button.jsx";
 import { useEffect, useState } from "react";
 import api from "../../constants/api.js";
+import { SaveUsuario, LoadUsuario } from "../../storage/storage.usuario.js";
 
 function Login(props) {
 
@@ -17,6 +18,10 @@ function Login(props) {
         try {
             setLoading(true);
             const response = await api.post("/usuarios/login", { email, senha });
+
+            //Salvar dados do usuario no storage local
+            await SaveUsuario(response.data);
+
             Alert.alert("Sucesso");
         } catch (error) {
             setLoading(false);
@@ -31,10 +36,10 @@ function Login(props) {
     async function CarregarDados() {
         try {
             const usuario = await LoadUsuario();
-
             if (usuario.token)
                 Alert.alert("Usuário já logado, pular tela de login");
-
+            
+            console.log(usuario)
         } catch (error) {
         }
     };
