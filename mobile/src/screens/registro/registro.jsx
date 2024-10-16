@@ -15,7 +15,8 @@ function Registro(props) {
 
     return <>
         <View style={styles.container}>
-            <ScrollView style={styles.scrollView}>
+            <ScrollView style={styles.scrollView}
+                showsVerticalScrollIndicator={false}>
                 <Header texto="Criar sua conta." />
 
                 <View style={styles.formGroup}>
@@ -32,20 +33,24 @@ function Registro(props) {
                     </View>
 
                     <View style={styles.form}>
-                        <TextBox label="Escolha uma senha" isPassword={true}
+                        <TextBox label="Escolha uma senha" isPassword={false}
                             onChangeText={(texto) => setSenha1(texto)}
                             value={senha1} />
                     </View>
 
                     <View style={styles.form}>
-                        <TextBox label="Confirme a senha" isPassword={true}
+                        <TextBox label="Confirme a senha" isPassword={false}
                             onChangeText={(texto) => setSenha2(texto)}
                             value={senha2} />
                     </View>
 
                     <View style={styles.form}>
                         <Button texto="Próximo passo"
-                            onPress={() => props.navigation.navigate("registro2")} />
+                            onPress={() => props.navigation.navigate("registro2", {
+                                nome: nome,
+                                email: email,
+                                senha: senha1
+                            })} />
                     </View>
                 </View>
 
