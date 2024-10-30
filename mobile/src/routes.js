@@ -1,37 +1,13 @@
-import Login from "./screens/login/login.jsx";
-import Registro from "./screens/registro/registro.jsx";
-import Registro2 from "./screens/registro2/registro2.jsx";
-
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-const Stack = createNativeStackNavigator();
+import RoutesOpen from "./routesOpen.js";
+import RoutesAuth from "./routesAuth.js";
+import { useContext } from "react";
+import { AuthContext } from "./contexts/auth.js";
 
 function Routes() {
-    return <NavigationContainer>
-        <Stack.Navigator>
 
-            <Stack.Screen name="login" component={Login} options={{
-                headerShown: false
-            }} />
+    const { user } = useContext(AuthContext);
 
-            <Stack.Screen name="registro2" component={Registro2} options={{
-                //headerShown: false
-                headerShadowVisible: false,
-                title: "",
-                headerBackTitle: "Voltar"
-            }} />
-
-            <Stack.Screen name="registro" component={Registro} options={{
-                //headerShown: false
-                headerShadowVisible: false,
-                title: "",
-                headerBackTitle: "Voltar"
-            }} />
-
-
-        </Stack.Navigator>
-    </NavigationContainer>
+    return user.id_usuario ? <RoutesAuth /> : <RoutesOpen />
 }
 
 export default Routes;
