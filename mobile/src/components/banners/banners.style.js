@@ -3,7 +3,8 @@ import { COLORS, FONT_SIZE } from "../../constants/theme"
 export const styles = {
     icone: {
         width: 220,
-        height: 120
+        height: 120,
+        borderRadius: 6
     },
     banner: {
         paddingRight: 10,

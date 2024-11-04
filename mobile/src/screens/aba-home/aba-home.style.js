@@ -21,5 +21,10 @@ export const styles = {
     },
     busca: {
         marginBottom: 10
+    },
+    destaques: {
+        color: COLORS.dark_gray,
+        fontWeight: "bold",
+        marginTop: 10
     }
 }
