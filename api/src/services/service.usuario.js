@@ -22,6 +22,14 @@ async function Inserir(nome, email, senha, endereco, complemento, bairro, cidade
         bairro, cidade, uf, cep);
 
     usuario.token = jwt.CreateJWT(usuario.id_usuario);
+    usuario.nome = nome;
+    usuario.email = email;
+    usuario.endereco = endereco;
+    usuario.complemento = complemento;
+    usuario.bairro = bairro;
+    usuario.cidade = cidade;
+    usuario.uf = uf;
+    usuario.cep = cep;
 
     return usuario;
 }

@@ -24,6 +24,7 @@ function Login(props) {
 
             if (response.data) {
                 //Salvar dados do usuario no storage local
+                api.defaults.headers.common['Authorization'] = "Bearer " + response.data.token;
                 await SaveUsuario(response.data);
                 setUser(response.data);
             }
@@ -41,8 +42,10 @@ function Login(props) {
         try {
             const usuario = await LoadUsuario();
 
-            if (usuario.token)
+            if (usuario.token) {
+                api.defaults.headers.common['Authorization'] = "Bearer " + usuario.token;
                 setUser(usuario);
+            }
 
         } catch (error) {
         }
