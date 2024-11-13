@@ -41,7 +41,12 @@ function AbaFavoritos(props) {
         }
     }
 
- 
+    function OpenCardapio(id) {
+        props.navigation.navigate("cardapio", {
+            id_empresa: id
+        });
+    }
+
     useEffect(() => {
         LoadFavoritos();
     }, []);
@@ -56,6 +61,7 @@ function AbaFavoritos(props) {
                     endereco={item.endereco}
                     logotipo={item.icone}
                     icone={icons.remove}
+                    onPress={OpenCardapio}
                     onClickIcon={RemoveFavorito}
                 />
             }}
