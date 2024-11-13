@@ -17,8 +17,7 @@ export const styles = {
         flexDirection: "row"
     },
     scrollView: {
-        width: "100%",
-        marginTop:50
+        width: "100%"
     },
     formGroup: {
         width: "100%",

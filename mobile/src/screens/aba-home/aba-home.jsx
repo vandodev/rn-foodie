@@ -1,4 +1,4 @@
-import { Image, View, Text, ScrollView, TouchableOpacity } from "react-native";
+import { Alert, Image, View, Text, ScrollView, TouchableOpacity } from "react-native";
 import { styles } from "./aba-home.style.js";
 import icons from "../../constants/icons.js";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -59,8 +59,42 @@ function AbaHome(props) {
         }
     }
 
-    function OpenCardapio() {
-        props.navigation.navigate("cardapio");
+    function OpenCardapio(id) {
+        props.navigation.navigate("cardapio", {
+            id_empresa: id
+        });
+    }
+
+    async function RemoveFavorito(id) {
+
+        try {
+            const response = await api.delete("/empresas/" + id + "/favoritos");
+
+            if (response.data) {
+                LoadDestaque();
+            }
+        } catch (error) {
+            if (error.response?.data.error)
+                Alert.alert(error.response.data.error);
+            else
+                Alert.alert("Ocorreu um erro. Tente novamente mais tarde");
+        }
+    }
+
+    async function AddFavorito(id) {
+
+        try {
+            const response = await api.post("/empresas/" + id + "/favoritos");
+
+            if (response.data) {
+                LoadDestaque();
+            }
+        } catch (error) {
+            if (error.response?.data.error)
+                Alert.alert(error.response.data.error);
+            else
+                Alert.alert("Ocorreu um erro. Tente novamente mais tarde");
+        }
     }
 
     const [busca, setBusca] = useState("");
@@ -102,11 +136,14 @@ function AbaHome(props) {
             {
                 restaurantes.map((restaurante, index) => {
                     return <View key={index}>
-                        <Restaurante logotipo={restaurante.icone}
+                        <Restaurante id_empresa={restaurante.id_empresa}
+                            logotipo={restaurante.icone}
                             nome={restaurante.nome}
                             endereco={restaurante.endereco}
                             icone={restaurante.favorito == "S" ? icons.favoritoFull : icons.favorito}
-                            onPress={OpenCardapio} />
+                            onPress={OpenCardapio}
+                            onClickIcon={restaurante.favorito == "S" ? RemoveFavorito : AddFavorito}
+                        />
                     </View>
                 })
             }

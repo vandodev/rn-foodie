@@ -13,6 +13,9 @@ export const styles = {
         width: "100%",
         marginBottom: 15
     },
+    scrollView: {
+        width: "100%"
+    },
     formGroup: {
         width: "100%",
         marginTop: 25,
@@ -20,19 +23,15 @@ export const styles = {
     },
     footer: {
         width: "100%",
-        height:70,
-        background:COLORS.white,
+        backgroundColor: COLORS.white,
         position: "absolute",
         bottom: 0,
-        marginBottom: 25,
-        padding:20
+        padding: 20,
+        height: 70
     },
     footerText: {
         textAlign: "center",
         color: COLORS.dark_gray,
         fontSize: FONT_SIZE.md
-    },
-    ScrollView: {
-        width: "100%",
     }
 }

@@ -1,5 +1,6 @@
-import { View, Text, FlatList } from "react-native";
+import { Image, TouchableOpacity, View, Text, FlatList } from "react-native";
 import { styles } from "./pedido-detalhe.style.js";
+import icons from "../../constants/icons.js";
 import { pedido } from "../../constants/dados.js";
 import Produto from "../../components/produto/produto.jsx";
 
