@@ -25,6 +25,23 @@ function AbaFavoritos(props) {
         }
     }
 
+    async function RemoveFavorito(id) {
+
+        try {
+            const response = await api.delete("/empresas/" + id + "/favoritos");
+
+            if (response.data) {
+                LoadFavoritos();
+            }
+        } catch (error) {
+            if (error.response?.data.error)
+                Alert.alert(error.response.data.error);
+            else
+                Alert.alert("Ocorreu um erro. Tente novamente mais tarde");
+        }
+    }
+
+ 
     useEffect(() => {
         LoadFavoritos();
     }, []);
@@ -39,6 +56,7 @@ function AbaFavoritos(props) {
                     endereco={item.endereco}
                     logotipo={item.icone}
                     icone={icons.remove}
+                    onClickIcon={RemoveFavorito}
                 />
             }}
 
