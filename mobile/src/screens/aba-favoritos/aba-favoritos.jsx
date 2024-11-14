@@ -55,9 +55,10 @@ function AbaFavoritos(props) {
         <FlatList data={restaurantes}
             keyExtractor={(restaurante) => restaurante.id}
             showsVerticalScrollIndicator={false}
-            renderItem={({ item }) => {
+            renderItem={({ item, index }) => {
                 return <Restaurante id_empresa={item.id_empresa}
                     nome={item.nome}
+                    // key={index}
                     endereco={item.endereco}
                     logotipo={item.icone}
                     icone={icons.remove}

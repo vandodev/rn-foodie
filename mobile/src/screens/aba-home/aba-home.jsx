@@ -97,6 +97,12 @@ function AbaHome(props) {
         }
     }
 
+    function Search(termo) {
+        props.navigation.navigate("busca", {
+            busca: termo
+        });
+    }
+
     const [busca, setBusca] = useState("");
     const [categorias, setCategorias] = useState([]);
     const [banners, setBanner] = useState([]);
@@ -120,7 +126,9 @@ function AbaHome(props) {
         <View style={styles.busca}>
             <TextBox placeholder="O que vamos pedir hoje?"
                 onChangeText={(texto) => setBusca(texto)}
-                value={busca} />
+                value={busca}
+                returnKeyType="search"
+                onSubmit={Search} />
         </View>
 
         <ScrollView showsVerticalScrollIndicator={false}>
