@@ -11,7 +11,9 @@ function AbaPedidos(props) {
     const [pedidos, setPedidos] = useState([]);
 
     function DetalhePedido(id) {
-        props.navigation.navigate("detalhe-pedido");
+        props.navigation.navigate("detalhe-pedido", {
+            id_pedido: id
+        });
     }
 
     async function LoadPedidos() {
