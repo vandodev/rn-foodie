@@ -7,7 +7,8 @@ function Banners(props) {
             {
                 props.dados.map((banner, index) => {
                     return <View key={index} style={styles.banner}>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => props.onClick(banner.id_banner)}>
                             <Image style={styles.icone} source={{ uri: banner.icone }} />
                         </TouchableOpacity>
                     </View>
