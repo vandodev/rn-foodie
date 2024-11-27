@@ -2,9 +2,10 @@ import { execute } from "../database/sqlite.js";
 
 async function Listar() {
 
-    const sql = `select p.*, e.nome, e.icone
+    const sql = `select p.*, e.nome, e.icone, s.descricao as descricao_status, s.cor
     from pedido p
     join empresa e on (e.id_empresa = p.id_empresa)
+    join pedido_status s on (s.status = p.status)
     order by p.id_pedido desc`;
 
     const pedidos = await execute(sql, []);
@@ -54,8 +55,6 @@ async function Inserir(id_usuario, dados) {
         await execute(sql, [id_pedido, item.id_produto, item.obs, item.qtd,
             item.vl_unitario, item.vl_total]);
     });
-
-    // console.log(dados.itens)
 
     return pedido[0];
 }

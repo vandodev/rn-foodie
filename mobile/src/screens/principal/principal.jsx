@@ -35,6 +35,7 @@ function Principal() {
         <Tab.Screen name="pedidos" component={AbaPedidos} options={{
             title: "Pedidos",
             headerTitleAlign: "center",
+            unmountOnBlur: true,
             headerShadowVisible: false,
             tabBarIcon: ({ focused }) => {
                 return <Image source={icons.abaPedido}
