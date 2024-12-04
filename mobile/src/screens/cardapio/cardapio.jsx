@@ -11,15 +11,18 @@ function Cardapio(props) {
     var categoriaAnterior = "";
     const [cardapio, setCardapio] = useState({ itens: [] });
     const id_empresa = props.route.params.id_empresa;
+    const [favorito, setFavorito] = useState("N");
 
     async function LoadCardapio(id) {
 
         try {
             const response = await api.get("/empresas/" + id + "/cardapio");
+            
             if (response.data) {
                 setCardapio(response.data);
+                setFavorito("N");
             }
-
+           
         } catch (error) {
             console.log(error);
             if (error.response?.data.error)
@@ -27,6 +30,42 @@ function Cardapio(props) {
             else
                 Alert.alert("Ocorreu um erro. Tente novamente mais tarde");
         }
+    }
+
+    async function AddFavorito(id) {
+
+        try {
+            const response = await api.post("/empresas/" + id + "/favoritos");
+
+            if (response.data) {
+                setFavorito("S");
+            }
+        } catch (error) {
+            if (error.response?.data.error)
+                Alert.alert(error.response.data.error);
+            else
+                Alert.alert("Ocorreu um erro. Tente novamente mais tarde");
+        }
+    }
+
+    async function RemoveFavorito(id) {
+
+        try {
+            const response = await api.delete("/empresas/" + id + "/favoritos");
+
+            if (response.data) {
+                setFavorito("N");
+            }
+        } catch (error) {
+            if (error.response?.data.error)
+                Alert.alert(error.response.data.error);
+            else
+                Alert.alert("Ocorreu um erro. Tente novamente mais tarde");
+        }
+    }
+
+    function ClickFavorito() {
+        favorito == "S" ? RemoveFavorito(id_empresa) : AddFavorito(id_empresa);
     }
 
     useEffect(() => {
@@ -51,7 +90,10 @@ function Cardapio(props) {
                 } </Text>
             </View>
 
-            <Image source={icons.favoritoFull} style={styles.favorito} />
+            <TouchableOpacity onPress={ClickFavorito}>
+                <Image source={favorito == "S" ? icons.favoritoFull : icons.favorito}
+                    style={styles.favorito} />
+            </TouchableOpacity>
         </View>
 
         <ScrollView>
