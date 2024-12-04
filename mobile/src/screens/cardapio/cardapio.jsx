@@ -68,6 +68,13 @@ function Cardapio(props) {
         favorito == "S" ? RemoveFavorito(id_empresa) : AddFavorito(id_empresa);
     }
 
+    function ClickProduto(id) {
+        props.navigation.navigate("detalhe-produto", {
+            id_produto: id,
+            id_empresa: id_empresa
+        });
+    }
+
     useEffect(() => {
         LoadCardapio(id_empresa);
     }, []);
@@ -122,6 +129,7 @@ function Cardapio(props) {
                             nome={item.nome}
                             descricao={item.descricao}
                             valor={item.vl_produto}
+                            onClick={ClickProduto}
                         />
                         
                         {categoriaAnterior = item.categoria}

@@ -4,7 +4,7 @@ import icons from "../../constants/icons.js";
 
 function Produto(props) {
     return <TouchableOpacity style={styles.produto}
-        onPress={() => props.onClick && props.onClick(props.id_produto)}>
+         onPress={() => props.onClick && props.onClick(props.id_produto)}>
         <Image source={{ uri: props.foto }} style={styles.foto} />
 
         <View style={styles.textos}>
