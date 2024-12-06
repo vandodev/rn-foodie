@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
 import { Image, TouchableOpacity, View, Text, TextInput, Alert } from "react-native";
 import { styles } from "./detalhe-produto.style.js";
 import icons from "../../constants/icons.js";
 import Button from "../../components/button/button.jsx";
 import api from "../../constants/api.js";
+import { useEffect, useState } from "react";
 
 function DetalheProduto(props) {
 
@@ -34,7 +34,8 @@ function DetalheProduto(props) {
 
     return <View style={styles.container}>
         <View style={styles.containerFoto}>
-            <Image source={{ uri: produto.icone }} style={styles.foto} resizeMode="cover" />
+            <Image source={{ uri: produto.icone }}
+                style={styles.foto} resizeMode="cover" />
 
             <TouchableOpacity style={styles.containerBack} onPress={props.navigation.goBack}>
                 <Image source={icons.back2} style={styles.back} />
