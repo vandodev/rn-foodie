@@ -3,13 +3,40 @@ import { styles } from "./detalhe-produto.style.js";
 import icons from "../../constants/icons.js";
 import Button from "../../components/button/button.jsx";
 import api from "../../constants/api.js";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
+
+import { CartContext } from "../../contexts/cart.js";
 
 function DetalheProduto(props) {
 
     const id_produto = props.route.params.id_produto;
     const id_empresa = props.route.params.id_empresa;
     const [produto, setProduto] = useState({});
+    const [qtd, setQtd] = useState(1);
+    const [obs, setObs] = useState("");
+
+    const { AddItem } = useContext(CartContext);
+
+    function AddProdutoCart() {
+        const item = {
+            id_item: uuidv4(),
+            id_produto: id_produto,
+            icone: produto.icone,
+            nome: produto.nome,
+            descricao: produto.descricao,
+            obs: obs,
+            qtd: qtd,
+            vl_unitario: produto.vl_produto,
+            vl_total: qtd * produto.vl_produto
+        }
+
+        AddItem(item);
+
+        props.navigation.goBack();
+    }
 
     async function LoadProduto(id_emp, id_prod) {
 
@@ -26,6 +53,13 @@ function DetalheProduto(props) {
             else
                 Alert.alert("Ocorreu um erro. Tente novamente mais tarde");
         }
+    }
+
+    function AlterarQtd(valor) {
+        if (qtd + valor < 1)
+            return;
+
+        setQtd(qtd + valor);
     }
 
     useEffect(() => {
@@ -57,22 +91,23 @@ function DetalheProduto(props) {
             <Text style={styles.descricao}>Observações</Text>
             <TextInput style={styles.multiline}
                 multiline={true}
-                numberOfLines={5} />
+                numberOfLines={5}
+                onChangeText={(text) => setObs(text)} />
         </View>
 
         <View style={styles.footer}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => AlterarQtd(-1)}>
                 <Image source={icons.menos} style={styles.imgQtd} />
             </TouchableOpacity>
 
-            <Text style={styles.qtd}>1</Text>
+            <Text style={styles.qtd}>{qtd}</Text>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => AlterarQtd(1)}>
                 <Image source={icons.mais} style={styles.imgQtd} />
             </TouchableOpacity>
 
             <View style={styles.footerBtn}>
-                <Button texto="Inserir" />
+                <Button texto="Inserir" onPress={AddProdutoCart} />
             </View>
         </View>
 

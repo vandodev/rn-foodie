@@ -10,7 +10,7 @@ import { CartContext } from "../../contexts/cart.js";
 
 function Checkout(props) {
 
-    const { cart, setCart } = useContext(CartContext);
+    const { itens, setItens } = useContext(CartContext);
 
     function ClickDelete() {
         alert("OK");
@@ -18,7 +18,7 @@ function Checkout(props) {
 
     return <View style={styles.container}>
 
-        <FlatList data={cart.itens}
+        <FlatList data={itens}
             keyExtractor={(item) => item.id_produto}
             showsVerticalScrollIndicator={false}
             renderItem={({ item }) => {
