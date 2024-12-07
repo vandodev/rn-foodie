@@ -1,15 +1,20 @@
+import { useEffect, useState, useContext, useCallback } from "react";
 import { Alert, Image, View, Text, ScrollView, TouchableOpacity } from "react-native";
 import { styles } from "./aba-home.style.js";
 import icons from "../../constants/icons.js";
 import { SafeAreaView } from "react-native-safe-area-context";
 import TextBox from "../../components/textbox/textbox.jsx";
-import { useEffect, useState } from "react";
 import Categorias from "../../components/categorias/categorias.jsx";
 import Banners from "../../components/banners/banners.jsx";
 import Restaurante from "../../components/restaurante/restaurante.jsx";
 import api from "../../constants/api.js";
+import { CartContext } from "../../contexts/cart.js";
+import { useFocusEffect } from "@react-navigation/native";
 
 function AbaHome(props) {
+
+    const { itens } = useContext(CartContext);
+    const [qtdItem, setQtdItem] = useState(0);
 
     async function LoadCategory() {
 
@@ -126,12 +131,17 @@ function AbaHome(props) {
         LoadDestaque();
     }, []);
 
+    useFocusEffect(useCallback(() => {
+        setQtdItem(itens.length > 0 ? itens.length : 0);
+    }, []));
+
     return <SafeAreaView style={styles.container}>
         <View style={styles.headerBar}>
             <Image source={icons.logo} style={styles.logo} />
 
             <TouchableOpacity onPress={() => props.navigation.navigate("checkout")}>
                 <Image source={icons.cart} style={styles.cart} />
+                <Text style={styles.cartQtd}>{qtdItem}</Text>
             </TouchableOpacity>
         </View>
 
