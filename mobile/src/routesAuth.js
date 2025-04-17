@@ -6,7 +6,6 @@ import Busca from "./screens/busca/busca.jsx";
 import DetalheProduto from "./screens/detalhe-produto/detalhe-produto.jsx";
 import DetalhePedido from "./screens/detalhe-pedido/detalhe-pedido.jsx";
 import Checkout from "./screens/checkout/checkout.jsx";
-import { Text, TouchableOpacity } from "react-native";
 import { COLORS } from "./constants/theme.js";
 
 const Stack = createNativeStackNavigator();
@@ -30,12 +29,7 @@ function RoutesAuth() {
             <Stack.Screen name="checkout" component={Checkout} options={{
                 headerShadowVisible: false,
                 title: "Meu Pedido",
-                headerTitleAlign: "center",
-                headerRight: () => {
-                    return <TouchableOpacity onPress={() => alert("OK")}>
-                        <Text style={{ color: COLORS.red }}>Limpar</Text>
-                    </TouchableOpacity>
-                },
+                headerTitleAlign: "center",              
                 animation: "slide_from_bottom",
             }} />
 

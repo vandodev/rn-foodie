@@ -1,16 +1,19 @@
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { styles } from "./checkout.style.js";
 import Produto from "../../components/produto/produto.jsx";
 import Button from "../../components/button/button.jsx";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { CartContext } from "../../contexts/cart.js";
+import { useNavigation } from "@react-navigation/native";
 
 
 function Checkout(props) {
 
-     const { itens, setItens, entrega, empresa, subtotal,
-            total, CalculaValores } = useContext(CartContext);
+    const nav = useNavigation();
+
+    const { itens, setItens, entrega, empresa, subtotal,
+        total, CalculaValores } = useContext(CartContext);
 
     function ClickDelete(id_item) {
         const itensNovo = itens.filter((item) => {
@@ -20,8 +23,22 @@ function Checkout(props) {
         setItens(itensNovo);
     }
 
+    function ClickLimpar() {
+        setItens([]);
+        props.navigation.goBack();
+    }
+
     useEffect(() => {
-        CalculaValores();       
+        CalculaValores();  
+
+        nav.setOptions({
+            headerRight: () => {
+                return <TouchableOpacity onPress={ClickLimpar}>
+                    <Text style={styles.btnLimpar}>Limpar</Text>
+                </TouchableOpacity>
+            }
+        })    
+
     }, [])
 
     return <View style={styles.container}>
