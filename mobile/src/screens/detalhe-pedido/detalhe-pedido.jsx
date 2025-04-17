@@ -42,7 +42,8 @@ function DetalhePedido(props) {
                 return <Produto key={item.idItem}
                     foto={item.icone}
                     nome={item.nome}
-                    qtd={item.qtd}
+                    qtd={item.qtd}                                        
+                    obs={item.obs}
                     descricao={item.descricao}
                     valor={item.vl_total} />
             }}

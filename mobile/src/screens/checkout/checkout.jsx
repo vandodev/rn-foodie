@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { CartContext } from "../../contexts/cart.js";
 import { useNavigation } from "@react-navigation/native";
+import api from "../../constants/api.js";
 
 
 function Checkout(props) {
@@ -26,6 +27,32 @@ function Checkout(props) {
     function ClickLimpar() {
         setItens([]);
         props.navigation.goBack();
+    }
+
+     async function EnviarPedido() {
+    
+        try {
+
+            const ped = {
+                id_empresa: empresa,
+                vl_subtotal: subtotal,
+                vl_taxa_entrega: entrega,
+                vl_total: total,
+                itens: itens
+            };
+
+            const response = await api.post("/pedidos", ped);
+
+            if (response.data) {
+                ClickLimpar();
+            }
+        } catch (error) {
+            if (error.response?.data.error)
+                Alert.alert(error.response.data.error);
+            else
+                Alert.alert("Ocorreu um erro. Tente novamente mais tarde");
+        }
+
     }
 
     useEffect(() => {
@@ -94,7 +121,7 @@ function Checkout(props) {
         </View>
 
         <View style={styles.conatinerBtn}>
-            <Button texto="Finalizar Pedido" />
+             <Button texto="Finalizar Pedido" onPress={EnviarPedido} />
         </View>
 
     </View>
