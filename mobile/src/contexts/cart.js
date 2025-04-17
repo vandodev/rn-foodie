@@ -17,10 +17,19 @@ function CartProvider(props) {
         setItens(novoItens);
     }
 
+    function CalculaValores() {
+        const subtotalTemp = itens.reduce((prev, atual) => {
+            return prev + atual.vl_total;
+        }, 0);
+
+        setSubtotal(subtotalTemp);
+        setTotal(subtotalTemp + entrega);
+    }
+
     return <CartContext.Provider value={{
         itens, setItens, entrega, setEntrega,
         subtotal, setSubtotal, total, setTotal, AddItem,
-        empresa, setEmpresa
+        empresa, setEmpresa, CalculaValores
     }}>
         {props.children}
     </CartContext.Provider>
