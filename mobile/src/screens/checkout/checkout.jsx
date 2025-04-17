@@ -1,6 +1,5 @@
-import { Image, TouchableOpacity, View, Text, FlatList } from "react-native";
+import { View, Text, FlatList } from "react-native";
 import { styles } from "./checkout.style.js";
-import icons from "../../constants/icons.js";
 import Produto from "../../components/produto/produto.jsx";
 import Button from "../../components/button/button.jsx";
 import { useEffect, useState } from "react";
@@ -13,8 +12,12 @@ function Checkout(props) {
      const { itens, setItens, entrega, empresa, subtotal,
             total, CalculaValores } = useContext(CartContext);
 
-    function ClickDelete() {
-        alert("OK");
+    function ClickDelete(id_item) {
+        const itensNovo = itens.filter((item) => {
+            return item.id_item != id_item
+        });
+
+        setItens(itensNovo);
     }
 
     useEffect(() => {
@@ -27,13 +30,16 @@ function Checkout(props) {
             keyExtractor={(item) => item.id_produto}
             showsVerticalScrollIndicator={false}
             renderItem={({ item }) => {
-                return <Produto key={item.id_produto}
+                return <Produto key={item.id_item}
                     id_produto={item.id_produto}
                     foto={item.icone}
                     nome={item.nome}
                     descricao={item.descricao}
-                    valor={item.vl_produto}
-                    onClick={ClickDelete}
+                    obs={item.obs}
+                    valor={item.vl_total}
+                    qtd={item.qtd}
+                    id_item={item.id_item}
+                    onClickDelete={ClickDelete}
                 />
             }}
         />

@@ -133,7 +133,7 @@ function AbaHome(props) {
 
     useFocusEffect(useCallback(() => {
         setQtdItem(itens.length > 0 ? itens.length : 0);
-    }, []));
+    }, [itens]));
 
     return <SafeAreaView style={styles.container}>
         <View style={styles.headerBar}>
