@@ -14,11 +14,13 @@ function DetalheProduto(props) {
 
     const id_produto = props.route.params.id_produto;
     const id_empresa = props.route.params.id_empresa;
+    const vl_taxa_entrega = props.route.params.vl_taxa_entrega;
+
     const [produto, setProduto] = useState({});
     const [qtd, setQtd] = useState(1);
     const [obs, setObs] = useState("");
 
-    const { AddItem } = useContext(CartContext);
+    const { AddItem, setEmpresa, setEntrega } = useContext(CartContext);
 
     function AddProdutoCart() {
         const item = {
@@ -33,7 +35,11 @@ function DetalheProduto(props) {
             vl_total: qtd * produto.vl_produto
         }
 
+        setEmpresa(id_empresa);
+        setEntrega(vl_taxa_entrega);
         AddItem(item);
+
+        // console.log(vl_taxa_entrega)
 
         props.navigation.goBack();
     }
