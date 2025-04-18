@@ -20,9 +20,17 @@ function DetalheProduto(props) {
     const [qtd, setQtd] = useState(1);
     const [obs, setObs] = useState("");
 
-    const { AddItem, setEmpresa, setEntrega } = useContext(CartContext);
+    const { AddItem, setEmpresa, setEntrega, empresa } = useContext(CartContext);
 
     function AddProdutoCart() {
+
+        if (empresa > 0) {
+            if (empresa != id_empresa) {
+                Alert.alert("Ocorreu um problema", "Você já possui itens no carrinho de outro estabelecimento.")
+                return;
+            }
+        }
+
         const item = {
             id_item: uuidv4(),
             id_produto: id_produto,

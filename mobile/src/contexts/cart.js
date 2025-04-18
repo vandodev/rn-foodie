@@ -28,6 +28,8 @@ function CartProvider(props) {
 
     useEffect(() => {
         CalculaValores();
+        if (itens.length == 0)
+            setEmpresa(0);
     }, [itens]);
 
     return <CartContext.Provider value={{

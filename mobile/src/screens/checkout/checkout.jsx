@@ -13,7 +13,7 @@ function Checkout(props) {
 
     const nav = useNavigation();
 
-    const { itens, setItens, entrega, empresa, subtotal,
+    const { itens, setItens, entrega, empresa, setEmpresa, subtotal,
         total, CalculaValores } = useContext(CartContext);
 
     function ClickDelete(id_item) {
@@ -25,6 +25,7 @@ function Checkout(props) {
     }
 
     function ClickLimpar() {
+        setEmpresa(0);
         setItens([]);
         props.navigation.goBack();
     }
