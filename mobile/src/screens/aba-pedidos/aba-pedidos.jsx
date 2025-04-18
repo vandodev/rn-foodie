@@ -38,11 +38,11 @@ function AbaPedidos(props) {
 
     return <View style={styles.container}>
         <FlatList data={pedidos}
-            keyExtractor={(ped) => ped.id_item}
+            keyExtractor={(ped) => ped.id_pedido}
             showsVerticalScrollIndicator={false}
             renderItem={({ item }) => {
                 return <Pedido logotipo={item.icone}
-                    key={item.id_item}
+                    key={item.id_pedido}
                     nome={item.nome}
                     valor={item.vl_total}
                     dt_pedido={item.dt_pedido}

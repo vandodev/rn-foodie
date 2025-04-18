@@ -53,7 +53,7 @@ function AbaFavoritos(props) {
 
     return <View style={styles.container}>
         <FlatList data={restaurantes}
-            keyExtractor={(restaurante) => restaurante.id}
+            keyExtractor={(restaurante) => restaurante.id_empresa}
             showsVerticalScrollIndicator={false}
             renderItem={({ item, index }) => {
                 return <Restaurante id_empresa={item.id_empresa}
